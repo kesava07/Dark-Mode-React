@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const StyledNavigation = styled.nav`
     padding:  ${({ theme }) => theme.spacing(3)}  ${({ theme }) => theme.spacing(9)};
-    box-shadow: ${({ theme }) => theme.elivation.shadow};
+    box-shadow: ${({ theme }) => theme.elevation.shadow};
     background: ${({ theme }) => theme.colors.cardBg};
     position: fixed;
     top: 0;
