@@ -21,7 +21,7 @@ export default function Users() {
   }, []);
   return (
     <Fragment>
-      <StyledTitle data-testid="title">Users</StyledTitle>
+      <StyledTitle data-testid="title">Users List</StyledTitle>
       {loading && <span data-testid="loader">Loading Users...</span>}
       <StyledGrid>
         {users &&
