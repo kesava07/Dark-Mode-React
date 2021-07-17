@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import { StyledNavigation } from './Components/Styled/StyledNavigation';
+import { StyledRootApp } from './Components/Styled/StyledRootApp';
+import { ThemeSwitch } from './Components/Styled/StyledSwitch';
+import Users from './Features/Users';
+import Theme from './Theme'
 
-function App() {
+export default function App() {
+  const localTheme = localStorage.theme
+  const [currentTheme, setCurrentTheme] = useState(localTheme ? localTheme : 'light');
+  const handleTheme = () => {
+    if (currentTheme === 'light') return setCurrentTheme('dark');
+    setCurrentTheme('light');
+  }
+  useEffect(() => {
+    localStorage.setItem("theme", currentTheme);
+  }, [currentTheme]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Theme currentTheme={currentTheme}>
+      <StyledNavigation>
+        <div>
+          <p>Link</p>
+        </div>
+        <div>
+          <ThemeSwitch toggleTheme={handleTheme} currentTheme={currentTheme} />
+        </div>
+      </StyledNavigation>
+      <StyledRootApp>
+        <Users />
+      </StyledRootApp>
+    </Theme>
+  )
 }
-
-export default App;
